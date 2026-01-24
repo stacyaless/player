@@ -1,0 +1,7 @@
+customtkinter
+pygame
+Pillow
+mutagen
+tinytag
+tkinterdnd2
+pyinstaller
