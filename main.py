@@ -32,7 +32,7 @@ class MusicPlayer(ctk.CTk, TkinterDnD.DnDWrapper):
         super().__init__()
         self.TkdndVersion = TkinterDnD._require(self)
 
-        self.title("Music Pro")
+        self.title("Music")
         self.geometry(f"{config.START_WIDTH}x{config.START_HEIGHT}")
         self.resizable(True, True)
         self.minsize(360, 600)
@@ -43,6 +43,10 @@ class MusicPlayer(ctk.CTk, TkinterDnD.DnDWrapper):
 
         try: pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=2048)
         except: pass
+
+        icon_path = self.resource_path("app_icon.ico")
+        if os.path.exists(icon_path):
+            self.iconbitmap(icon_path)
 
         # State
         self.playlist = []
@@ -141,6 +145,12 @@ class MusicPlayer(ctk.CTk, TkinterDnD.DnDWrapper):
         self.canvas.move(self.btn_objects[name]["id"], 0, -1)
         if self.btn_objects[name]["cmd"]:
             self.btn_objects[name]["cmd"]()
+
+
+    def resource_path(self, relative_path):
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(os.path.abspath("."), relative_path)
 
     # --- 🟢 布局更新 (Layout Tweaks) ---
     def update_layout(self):
