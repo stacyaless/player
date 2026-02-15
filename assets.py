@@ -37,7 +37,7 @@ def get_icon(name, size):
         
         draw.rectangle((cx - gap - bar_w, cy - bar_h/2, cx - gap, cy + bar_h/2), fill="white") # 🟢 改为白色
         draw.rectangle((cx + gap, cy - bar_h/2, cx + gap + bar_w, cy + bar_h/2), fill="white") # 🟢 改为白色
-
+        
     elif name == "prev":
         # 倒三角
         tri_w = actual_size * 0.5
@@ -50,7 +50,7 @@ def get_icon(name, size):
         # 竖线
         line_w = actual_size * 0.08
         draw.rectangle((cx - tri_w/2 - line_w - (actual_size*0.02), cy - tri_h/2, cx - tri_w/2 - (actual_size*0.02), cy + tri_h/2), fill="white")
-
+        
     elif name == "next":
         # 三角
         tri_w = actual_size * 0.5
@@ -63,11 +63,12 @@ def get_icon(name, size):
         # 竖线
         line_w = actual_size * 0.08
         draw.rectangle((cx + tri_w/2 + (actual_size*0.02), cy - tri_h/2, cx + tri_w/2 + line_w + (actual_size*0.02), cy + tri_h/2), fill="white")
+        
     elif name == "import":
         # 线条稍微调细一点 (4倍因子)，防止糊成一团
         stroke = int(2 * factor)
         
-        # 1. 绘制底部的“托盘” (U字型)
+        # 1. 绘制底部的"托盘" (U字型)
         # 左右边距 20%，底部边距 25%
         u_left = actual_size * 0.2
         u_right = actual_size * 0.8
@@ -95,8 +96,27 @@ def get_icon(name, size):
         draw.line((cx, arrow_tip, cx - wing_size, arrow_tip - wing_size), fill="white", width=stroke)
         # 右翼
         draw.line((cx, arrow_tip, cx + wing_size, arrow_tip - wing_size), fill="white", width=stroke)
-
-
+        
+    elif name == "playlist":
+        # 三条横线代表播放列表
+        stroke = int(2 * factor)
+        
+        # 列表高度占画布的 50%
+        list_h = actual_size * 0.5
+        line_spacing = list_h / 2
+        
+        # 起始Y坐标（居中）
+        start_y = cy - list_h / 2
+        
+        # 左右边距 20%
+        left_x = actual_size * 0.2
+        right_x = actual_size * 0.8
+        
+        # 绘制三条横线
+        for i in range(3):
+            y = start_y + (i * line_spacing)
+            draw.line((left_x, y, right_x, y), fill="white", width=stroke)
+    
     # 统一高质量缩放
     img = img.resize((size, size), Image.Resampling.LANCZOS)
     return img
