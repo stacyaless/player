@@ -5,3 +5,5 @@ mutagen
 tinytag
 tkinterdnd2
 pyinstaller
+requests
+urllib3
