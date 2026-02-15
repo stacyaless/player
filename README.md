@@ -118,7 +118,7 @@ self.netease_api = "http://yourip:3000"
 2. **性能**: 背景动画可能会对性能有一定影响，可在配置中调整
 
 ##
-在https://github.com/stacyaless/player/releases下载编译的exe
+在 https://github.com/stacyaless/player/releases 下载编译的exe
 
 ## 📄 许可证
 
